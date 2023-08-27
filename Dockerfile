@@ -1,5 +1,5 @@
 # Use a suitable Node.js runtime as a base image
-FROM node:14-alpine
+FROM node:18-alpine
 
 # Set the working directory in the container
 WORKDIR /app
@@ -10,11 +10,14 @@ COPY package*.json ./
 # Install application dependencies
 RUN npm install
 
-# Copy the rest of the application code
+# Copy the rest of the application code to the working directory
 COPY . .
+
+# Build the application
+RUN npm run build
 
 # Expose any necessary ports (if your app listens on a specific port)
 EXPOSE 3000
 
-# Run the application
-CMD ["node", "App.js"]  
+# Start the application
+CMD ["npm", "start"]
