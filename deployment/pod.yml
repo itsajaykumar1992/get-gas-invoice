@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: invoice-frontend
+spec:
+  replicas: 5  # Adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: invoice-frontend
+  template:
+    metadata:
+      labels:
+        app: invoice-frontend
+    spec:
+      containers:
+        - name: invoice-frontend
+          image: eficensfsd.azurecr.io/invoice_frontend:1.0.2  # Replace with your React image
+          ports:
+            - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: invoice-frontend-service
+spec:
+  selector:
+    app: invoice-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer  # Or use NodePort or ClusterIP based on your setup
