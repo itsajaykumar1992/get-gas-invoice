@@ -14,7 +14,7 @@ variables:
   imageRepository: 'getgasinvoiceui'
   containerRegistry: 'akscontianerreg.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  tag: '1.0.0'
+  tag: '1.0.1'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
